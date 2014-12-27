@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openerp>
+    <data>
+
+        <record id="productsupplier_tree_view" model="ir.ui.view">
+            <field name="name">product.supplierinfo.treeview</field>
+            <field name="model">product.supplierinfo</field>
+            <field name="type">tree</field>
+            <field name="arch" type="xml">
+                <tree string="Product Supplier Info" editable="bottom">
+                        <field name="name" />
+                        <field name="product_tmpl_id" />
+                </tree>
+            </field>
+	</record>
+
+        <record id="action_productsupplier_tree" model="ir.actions.act_window">
+            <field name="name">Product Supplier Info</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">product.supplierinfo</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">tree,form</field>
+            <field name="view_id" ref="productsupplier_tree_view"/>
+            <!-- field name="search_view_id" ref="productsupplier_search_view"/ -->
+        </record>
+
+        <menuitem id="menu_productsupplier_id" name="Product Supplier" parent="purchase.menu_procurement_management_product"
+			 sequence="5" action="action_productsupplier_tree" />
+
+	</data>
+</openerp>
