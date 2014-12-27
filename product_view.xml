@@ -10,9 +10,30 @@
                 <tree string="Product Supplier Info" editable="bottom">
                         <field name="name" />
                         <field name="product_tmpl_id" />
+                        <field name="product_code" />
+                        <field name="product_name" />
+                        <field name="delay" />
+                        <field name="min_qty" />
                 </tree>
             </field>
 	</record>
+
+
+	<record id="productsupplier_search_view" model="ir.ui.view">
+        <field name="name">Product Supplier - Search</field>
+        <field name="model">product.supplierinfo</field>
+        	<field name="arch" type="xml">
+		    <search string="Search Supplier Catalog">
+			<field name='product_tmpl_id' />
+			<field name='name' />
+			<group expand="0" string="Group By">
+	       		        <filter string='Product' icon="terp-mrp" domain="[]" context="{'group_by' : 'product_tmpl_id'}"/>
+				<filter string='Supplier' icon="terp-mrp" domain="[]" context="{'group_by' : 'name'}"/>
+			</group>
+		    </search>
+       		 </field>
+	</record>
+
 
         <record id="action_productsupplier_tree" model="ir.actions.act_window">
             <field name="name">Product Supplier Info</field>
@@ -21,10 +42,10 @@
             <field name="view_type">form</field>
             <field name="view_mode">tree,form</field>
             <field name="view_id" ref="productsupplier_tree_view"/>
-            <!-- field name="search_view_id" ref="productsupplier_search_view"/ -->
+            <field name="search_view_id" ref="productsupplier_search_view"/>
         </record>
 
-        <menuitem id="menu_productsupplier_id" name="Product Supplier" parent="purchase.menu_procurement_management_product"
+        <menuitem id="menu_productsupplier_id" name="Product Catalog" parent="purchase.menu_procurement_management_product"
 			 sequence="5" action="action_productsupplier_tree" />
 
 	</data>
